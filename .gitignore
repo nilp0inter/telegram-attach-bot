@@ -133,6 +133,4 @@ dmypy.json
 
 # deps
 telegram_attach_bot/*.dist-info
-telegram_attach_bot/bin
-telegram_attach_bot/slugify
-telegram_attach_bot/text_unidecode
+telegram_attach_bot/*/**
