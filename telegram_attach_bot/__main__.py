@@ -1,18 +1,20 @@
+from tempfile import TemporaryDirectory
 import os
 import sys
+import traceback
 import zipfile
-from tempfile import TemporaryDirectory
 
 from slugify import slugify
 
-import parser
+import caption
 import filters
+import parser
 import scanner
 import telegram
-import caption
 
-
+print("ARGV:", sys.argv)
 args = parser.parse_args(sys.argv[1:])
+print("ARGS:", args)
 
 entries = scanner.scantree(args.path)
 entries = filters.only_files(entries)
@@ -39,8 +41,11 @@ with TemporaryDirectory() as tmpdir:
         args.metadata if args.metadata else {})
 
     for chat in args.chat:
-        if totalfiles > 0:
-            telegram.send_file(args.token, chat, filepath, c)
-        else:
-            telegram.send_message(args.token, chat, c)
+        try:
+            if totalfiles > 0:
+                print(telegram.send_file(args.token, chat, filepath, c))
+            else:
+                print(telegram.send_message(args.token, chat, c))
+        except:
+            traceback.print_exc()
 
