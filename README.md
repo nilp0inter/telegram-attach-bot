@@ -26,5 +26,5 @@ attachbot: error: the following arguments are required: --token, --chat, path
 3. Check `Run external program on torrent completion` and paste the following in the command box:
 
 ```
-attachbot --token=<telegram_bot_token> --chat=<telegram_chat_id> "--name=%N" "--max-entry-size=200 MiB" "--max-total-size=2 GiB" --metadata "Category=%L" --metadata "Tags=%G" --metadata "Number of files=%C" --metadata "Torrent size=%Z" --metadata "Current tracker=%T" --metadata "Info hash=%I" "%F"
+attachbot --token=<telegram_bot_token> --chat=<telegram_chat_id> "--name=%N" "--max-entry-size=50 MB" "--max-total-size=50 MB" --metadata "Category=%L" --metadata "Tags=%G" --metadata "Number of files=%C" --metadata "Torrent size=%Z" --metadata "Current tracker=%T" --metadata "Info hash=%I" "%F"
 ```
