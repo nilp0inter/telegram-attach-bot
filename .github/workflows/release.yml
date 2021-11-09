@@ -1,0 +1,27 @@
+name: Release
+
+on: push
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Setup Python
+        uses: actions/setup-python@v2.2.2
+        with:
+          # Version range or exact version of a Python version to use, using SemVer's version range syntax.
+          python-version: 3.8.10
+      - name: Build
+        run: make attachbot
+      - name: Upload a Build Artifact
+        uses: actions/upload-artifact@v2.2.4
+        with:
+          name: attachbot
+          path: attachbot
+      - name: Release
+        uses: softprops/action-gh-release@v1
+        if: startsWith(github.ref, 'refs/tags/')
+        with:
+          files: attachbot
