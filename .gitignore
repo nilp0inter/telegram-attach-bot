@@ -134,3 +134,4 @@ dmypy.json
 # deps
 telegram_attach_bot/*.dist-info
 telegram_attach_bot/*/**
+attachbot
